@@ -3,6 +3,8 @@
 #Depend: GCode
 #Type: postprocess
 #Param: zretraction(float:1.0) Retraction at layer change (mm)
+#Param: subsequentlayertemp(int:0) Extruder temp after 1st layer (C)
+#Param: subsequentlayerbedtemp(int:0) Bed temp  after 1st layer (C)
 
 __copyright__ = "Copyright (C) 2014 Frank Brandner - Released under terms of the AGPLv3 License"
 import re
@@ -43,3 +45,8 @@ with open(filename, "w") as f:
 		else:
 			line = "" + line2[0] + line2[1] + line2[2]
 			f.write(line)
+		if line2[2] == 'LAYER:1\n':
+			if int(subsequentlayerbedtemp) > 0:
+				f.write("M140 S" + str(subsequentlayerbedtemp) + " ; Set bed temp\n")
+			if int(subsequentlayertemp) > 0:
+				f.write("M104 S" + str(subsequentlayertemp) + " ; Set extruder temp\n")
