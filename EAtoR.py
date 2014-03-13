@@ -50,3 +50,4 @@ with open(filename, "w") as f:
 				f.write("M140 S" + str(subsequentlayerbedtemp) + " ; Set bed temp\n")
 			if int(subsequentlayertemp) > 0:
 				f.write("M104 S" + str(subsequentlayertemp) + " ; Set extruder temp\n")
+				
