@@ -30,7 +30,7 @@ with open(filename, "w") as f:
 		line2 = list(line.partition(";"))
 		if "G0" in line2[0]:
 			line2[0] = line2[0].replace("G0","G1")
-		if "Z" in line2[0] and "X" in line2[0] and "Y" in line2[0]:
+		if "G1 " in line[0] and "Z" in line2[0] and "X" in line2[0] and "Y" in line2[0]:
 			part1 = line2[0].split('Z')[0]
 			part2 = "G1 Z" + line2[0].split('Z')[1]
 			line2[0] = part2 + part1 + "\n"
